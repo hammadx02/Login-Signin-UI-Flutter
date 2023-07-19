@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:login_ui/components/buttons.dart';
+import 'package:login_ui/screens/email_screen.dart';
 import 'package:login_ui/screens/signin_screen.dart';
 
 import '../constents/constents.dart';
@@ -39,10 +40,13 @@ class _LoginScreenState extends State<LoginScreen> {
               asset: 'images/apple.png',
               title: 'Continue with Google',
             ),
-            const SimpleButton(
-              color: Colors.deepPurple,
-              title: 'Sign up with email',
-              textColor: Colors.white,
+            InkWell(
+              onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => EmailSignIn()));},
+              child:  const SimpleButton(
+                color: Colors.deepPurple,
+                title: 'Sign up with email',
+                textColor: Colors.white,
+              ),
             ),
             const SimpleButton(
               color: Colors.deepPurple,
