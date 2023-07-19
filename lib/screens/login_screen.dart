@@ -5,8 +5,6 @@ import 'package:login_ui/screens/signin_screen.dart';
 import '../constents/constents.dart';
 
 class LoginScreen extends StatefulWidget {
-  static const String id = 'login_screen';
-
   const LoginScreen({super.key});
 
   @override
@@ -83,9 +81,14 @@ class _LoginScreenState extends State<LoginScreen> {
             const SizedBox(
               height: 15,
             ),
-            TextButton(
-              onPressed: () {
-                Navigator.pushNamed(context, SignInScreen.id);
+            InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SignInScreen(),
+                  ),
+                );
               },
               child: const SimpleButton(
                 color: Colors.white,

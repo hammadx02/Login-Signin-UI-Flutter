@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:login_ui/multi_switch.dart';
 
 class SignInScreen extends StatefulWidget {
-  static const String id = 'signin_screen';
+  
   const SignInScreen({super.key});
 
   @override
@@ -62,7 +62,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   hintText: 'Password',
                   hintStyle: const TextStyle(color: Colors.grey),
                   prefixIcon: const Icon(
-                    Icons.email_outlined,
+                    Icons.lock_outline,
                     color: Colors.grey,
                   ),
                   suffixIcon: const Icon(
