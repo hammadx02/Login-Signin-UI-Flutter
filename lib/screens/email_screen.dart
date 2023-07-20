@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:validators/validators.dart';
 
 import '../components/buttons.dart';
 import '../constents/constents.dart';
@@ -11,11 +12,21 @@ class EmailSignIn extends StatefulWidget {
 }
 
 class _EmailSignInState extends State<EmailSignIn> {
+  int currentStep = 0;
+  onSteppedTapped(int value) {
+    setState(() {
+      currentStep = value;
+    });
+  }
+
+  bool isEmailCorrect = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stepper(
         type: StepperType.horizontal,
+        currentStep: currentStep,
+        onStepTapped: onSteppedTapped,
         elevation: 0,
         steps: [
           Step(
@@ -40,6 +51,13 @@ class _EmailSignInState extends State<EmailSignIn> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: TextFormField(
+                    onChanged: (val) {
+                      setState(
+                        () {
+                          isEmailCorrect = isEmail(val);
+                        },
+                      );
+                    },
                     decoration: InputDecoration(
                       hintText: 'Email address',
                       hintStyle: const TextStyle(color: Colors.grey),
@@ -47,14 +65,28 @@ class _EmailSignInState extends State<EmailSignIn> {
                         Icons.email_outlined,
                         color: Colors.grey,
                       ),
+                      suffixIcon: isEmailCorrect == false
+                          ? const Icon(
+                              Icons.close_rounded,
+                              color: Colors.red,
+                            )
+                          : const Icon(
+                              Icons.check_circle_outline_outlined,
+                              color: Colors.green,
+                            ),
                       fillColor: Colors.white,
                       filled: true,
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: const BorderSide(color: Colors.grey),
-                      ),
                       enabledBorder: OutlineInputBorder(
                         borderSide: const BorderSide(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: isEmailCorrect == false
+                              ? Colors.red
+                              : Colors.green,
+                          width: 2,
+                        ),
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
@@ -186,10 +218,166 @@ class _EmailSignInState extends State<EmailSignIn> {
               ],
             ),
           ),
-          const Step(
+          Step(
             isActive: true,
-            title: Text(''),
-            content: Text('Step 2'),
+            title: const Text(''),
+            content: Column(
+              children: [
+                const Row(
+                  children: [
+                    CircleAvatar(
+                      backgroundColor: themeColor,
+                      minRadius: 10,
+                      maxRadius: 40,
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Icon(
+                          Icons.person_add_alt_1_outlined,
+                          size: 50,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 30,
+                    ),
+                    Text(
+                      'Personal Details',
+                      style:
+                          TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      hintText: 'First Name',
+                      hintStyle: const TextStyle(color: Colors.grey),
+                      fillColor: Colors.white,
+                      filled: true,
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      hintText: 'Last Name',
+                      hintStyle: const TextStyle(color: Colors.grey),
+                      fillColor: Colors.white,
+                      filled: true,
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      hintText: '0000-0000000',
+                      hintStyle: const TextStyle(color: Colors.grey),
+                      fillColor: Colors.white,
+                      filled: true,
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      hintText: 'DOB',
+                      hintStyle: const TextStyle(color: Colors.grey),
+                      fillColor: Colors.white,
+                      filled: true,
+                      suffixIcon: const Icon(Icons.calendar_month_outlined),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      hintText: 'Address',
+                      hintStyle: const TextStyle(color: Colors.grey),
+                      fillColor: Colors.white,
+                      filled: true,
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          hintText: 'City',
+                          hintStyle: const TextStyle(color: Colors.grey),
+                          fillColor: Colors.white,
+                          filled: true,
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.grey),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          hintText: 'Postal Code',
+                          hintStyle: const TextStyle(color: Colors.grey),
+                          fillColor: Colors.white,
+                          filled: true,
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(color: Colors.grey),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
           const Step(
             isActive: true,
