@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:validators/validators.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:intl/intl.dart';
 
 import '../components/buttons.dart';
 import '../constents/constents.dart';
@@ -12,6 +14,7 @@ class EmailSignIn extends StatefulWidget {
 }
 
 class _EmailSignInState extends State<EmailSignIn> {
+  TextEditingController _date = TextEditingController();
   int currentStep = 0;
   onSteppedTapped(int value) {
     setState(() {
@@ -259,6 +262,10 @@ class _EmailSignInState extends State<EmailSignIn> {
                       hintStyle: const TextStyle(color: Colors.grey),
                       fillColor: Colors.white,
                       filled: true,
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: const BorderSide(color: Colors.grey),
+                      ),
                       enabledBorder: OutlineInputBorder(
                         borderSide: const BorderSide(color: Colors.grey),
                         borderRadius: BorderRadius.circular(10),
@@ -277,6 +284,10 @@ class _EmailSignInState extends State<EmailSignIn> {
                       hintStyle: const TextStyle(color: Colors.grey),
                       fillColor: Colors.white,
                       filled: true,
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: const BorderSide(color: Colors.grey),
+                      ),
                       enabledBorder: OutlineInputBorder(
                         borderSide: const BorderSide(color: Colors.grey),
                         borderRadius: BorderRadius.circular(10),
@@ -289,12 +300,17 @@ class _EmailSignInState extends State<EmailSignIn> {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                  child: TextFormField(
+                  child: IntlPhoneField(
+                    languageCode: 'en',
                     decoration: InputDecoration(
-                      hintText: '0000-0000000',
+                      hintText: 'Phone Number',
                       hintStyle: const TextStyle(color: Colors.grey),
                       fillColor: Colors.white,
                       filled: true,
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: const BorderSide(color: Colors.grey),
+                      ),
                       enabledBorder: OutlineInputBorder(
                         borderSide: const BorderSide(color: Colors.grey),
                         borderRadius: BorderRadius.circular(10),
@@ -308,12 +324,36 @@ class _EmailSignInState extends State<EmailSignIn> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 30.0),
                   child: TextFormField(
+                    controller: _date,
+                    onTap: () async {
+                      DateTime? pickeddate = await showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(1900),
+                        lastDate: DateTime(2100),
+                      );
+
+                      if (pickeddate != null) {
+                        setState(
+                          () {
+                            _date.text =
+                                DateFormat('dd-MM-yyyy').format(pickeddate);
+                          },
+                        );
+                      }
+                    },
                     decoration: InputDecoration(
                       hintText: 'DOB',
                       hintStyle: const TextStyle(color: Colors.grey),
                       fillColor: Colors.white,
                       filled: true,
-                      suffixIcon: const Icon(Icons.calendar_month_outlined),
+                      suffixIcon: const Icon(
+                        Icons.calendar_month_outlined,
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: const BorderSide(color: Colors.grey),
+                      ),
                       enabledBorder: OutlineInputBorder(
                         borderSide: const BorderSide(color: Colors.grey),
                         borderRadius: BorderRadius.circular(10),
@@ -332,6 +372,10 @@ class _EmailSignInState extends State<EmailSignIn> {
                       hintStyle: const TextStyle(color: Colors.grey),
                       fillColor: Colors.white,
                       filled: true,
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: const BorderSide(color: Colors.grey),
+                      ),
                       enabledBorder: OutlineInputBorder(
                         borderSide: const BorderSide(color: Colors.grey),
                         borderRadius: BorderRadius.circular(10),
@@ -342,40 +386,40 @@ class _EmailSignInState extends State<EmailSignIn> {
                 const SizedBox(
                   height: 10,
                 ),
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                      child: TextFormField(
-                        decoration: InputDecoration(
-                          hintText: 'City',
-                          hintStyle: const TextStyle(color: Colors.grey),
-                          fillColor: Colors.white,
-                          filled: true,
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.grey),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                      child: TextFormField(
-                        decoration: InputDecoration(
-                          hintText: 'Postal Code',
-                          hintStyle: const TextStyle(color: Colors.grey),
-                          fillColor: Colors.white,
-                          filled: true,
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.grey),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                // Row(
+                //   children: [
+                //     Padding(
+                //       padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                //       child: TextFormField(
+                //         decoration: InputDecoration(
+                //           hintText: 'City',
+                //           hintStyle: const TextStyle(color: Colors.grey),
+                //           fillColor: Colors.white,
+                //           filled: true,
+                //           enabledBorder: OutlineInputBorder(
+                //             borderSide: const BorderSide(color: Colors.grey),
+                //             borderRadius: BorderRadius.circular(10),
+                //           ),
+                //         ),
+                //       ),
+                //     ),
+                //     Padding(
+                //       padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                //       child: TextFormField(
+                //         decoration: InputDecoration(
+                //           hintText: 'Postal Code',
+                //           hintStyle: const TextStyle(color: Colors.grey),
+                //           fillColor: Colors.white,
+                //           filled: true,
+                //           enabledBorder: OutlineInputBorder(
+                //             borderSide: const BorderSide(color: Colors.grey),
+                //             borderRadius: BorderRadius.circular(10),
+                //           ),
+                //         ),
+                //       ),
+                //     ),
+                //   ],
+                // ),
               ],
             ),
           ),
