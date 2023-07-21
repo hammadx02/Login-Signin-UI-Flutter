@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:login_ui/components/buttons.dart';
-import 'package:login_ui/screens/email_screen.dart';
 import 'package:login_ui/screens/signin_screen.dart';
+import 'package:login_ui/screens/signup_email.dart';
 
 import '../constents/constents.dart';
 
@@ -41,8 +41,15 @@ class _LoginScreenState extends State<LoginScreen> {
               title: 'Continue with Google',
             ),
             InkWell(
-              onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => EmailSignIn()));},
-              child:  const SimpleButton(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SignupEmail(),
+                  ),
+                );
+              },
+              child: const SimpleButton(
                 color: Colors.deepPurple,
                 title: 'Sign up with email',
                 textColor: Colors.white,
