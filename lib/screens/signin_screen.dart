@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:login_ui/multi_switch.dart';
+import 'package:login_ui/widgets/multi_switch.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
