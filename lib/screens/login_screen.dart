@@ -15,102 +15,100 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: SafeArea(
-        child: Scaffold(
-          backgroundColor: Colors.white,
-          body: SingleChildScrollView(
-            child: Column(
-              children: [
-                const Image(
-                  image: AssetImage('images/logo.png'),
-                  height: 250,
-                  width: 250,
-                ),
-                const ButtonThatUsedIcon(
-                  color: Colors.white,
-                  asset: 'images/facebook.png',
-                  title: 'Continue with Facebook',
-                ),
-                const ButtonThatUsedIcon(
-                  color: Colors.white,
-                  asset: 'images/google.png',
-                  title: 'Continue with Google',
-                ),
-                const ButtonThatUsedIcon(
-                  color: Colors.white,
-                  asset: 'images/apple.png',
-                  title: 'Continue with Apple',
-                ),
-                InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => SignupEmail(),
-                      ),
-                    );
-                  },
-                  child: const SimpleButton(
-                    color: Colors.deepPurple,
-                    title: 'Sign up with email',
-                    textColor: Colors.white,
-                  ),
-                ),
-                const SimpleButton(
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              const Image(
+                image: AssetImage('images/logo.png'),
+                height: 250,
+                width: 250,
+              ),
+              const ButtonThatUsedIcon(
+                color: Colors.white,
+                asset: 'images/facebook.png',
+                title: 'Continue with Facebook',
+              ),
+              const ButtonThatUsedIcon(
+                color: Colors.white,
+                asset: 'images/google.png',
+                title: 'Continue with Google',
+              ),
+              const ButtonThatUsedIcon(
+                color: Colors.white,
+                asset: 'images/apple.png',
+                title: 'Continue with Apple',
+              ),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SignupEmail(),
+                    ),
+                  );
+                },
+                child: const SimpleButton(
                   color: Colors.deepPurple,
-                  title: 'Sign up with mobile',
+                  title: 'Sign up with email',
                   textColor: Colors.white,
                 ),
-                const SizedBox(
-                  height: 50,
-                ),
-                const Row(
-                  children: [
-                    Expanded(
-                      child: Divider(
-                        color: Colors.grey,
-                        thickness: 0.5,
-                      ),
+              ),
+              const SimpleButton(
+                color: Colors.deepPurple,
+                title: 'Sign up with mobile',
+                textColor: Colors.white,
+              ),
+              const SizedBox(
+                height: 50,
+              ),
+              const Row(
+                children: [
+                  Expanded(
+                    child: Divider(
+                      color: Colors.grey,
+                      thickness: 0.5,
                     ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Text(
-                      'Already have an account?',
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Expanded(
-                      child: Divider(
-                        color: Colors.grey,
-                        thickness: 0.5,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const SignInScreen(),
-                      ),
-                    );
-                  },
-                  child: const SimpleButton(
-                    color: Colors.white,
-                    title: 'Sign In',
-                    textColor: themeColor,
                   ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Text(
+                    'Already have an account?',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Expanded(
+                    child: Divider(
+                      color: Colors.grey,
+                      thickness: 0.5,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SignInScreen(),
+                    ),
+                  );
+                },
+                child: const SimpleButton(
+                  color: Colors.white,
+                  title: 'Sign In',
+                  textColor: themeColor,
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
